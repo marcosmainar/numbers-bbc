@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html ng-app="omdbModule">
+    <body>
+    </body>
+
+</html>
+
+<script>
+
+var allExpressions = [''];
+for (var i = 1; i <= 9; i++) {
+    var option1 = '' + i;
+    var option2 = '+' + i;
+    var option3 = '-' + i;
+    var results = [];
+    allExpressions.forEach(function(expr) {
+        var newExpr = '';
+        newExpr = expr + option1;
+        results.push(newExpr);
+
+        if (i !== 1) {
+          newExpr = expr + option2;
+          results.push(newExpr);
+
+          newExpr = expr + option3;
+          results.push(newExpr);
+        }
+    });
+    allExpressions = results;
+}
+
+var candidates = [];
+var target = 100;
+allExpressions.forEach(function(expr) {
+    var result = eval(expr);
+    if (result === target) {
+      candidates.push(expr);
+    }
+});
+
+var minSymbols = 9;
+var minExpression = '';
+candidates.forEach(function(candidate) {
+    var symbols = 0;
+    for (var c of candidate) {
+        if (c === '-' || c === '+') {
+          symbols++;
+        }
+    }
+    if (symbols < minSymbols) {
+        minSymbols = symbols;
+        minExpression = candidate;
+    }
+});
+
+minExpression
+
+</script>
